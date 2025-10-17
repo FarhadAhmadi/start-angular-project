@@ -1,0 +1,18 @@
+<app-header />
+<button (click)="changeUserName()">Change First User Name</button>
+<main>
+  
+  <ul id="users">
+    <!-- @for (user of users; track user.id) {
+    <li>
+      <app-user [user]="user" (select)="OnSelectUser($event)" />
+    </li>
+    } -->
+    <li *ngFor="let user of users;">
+      <app-user [user]="user" (select)="OnSelectUser($event)" />
+  </ul>
+  <app-tasks *ngIf="hasName; else fallback" [id]="selectedUserId" [name]="selectedUserName" />
+  <ng-template #fallback>
+    <h2>Please select a user to see their tasks.</h2>
+  </ng-template>
+</main>
