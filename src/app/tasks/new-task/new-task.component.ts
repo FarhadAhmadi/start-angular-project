@@ -19,6 +19,7 @@ import { TasksService } from '../tasks.service';
 })
 export class NewTaskComponent {
   private taskService = inject(TasksService);
+  
   @Input({ required: true }) userId!: string;
   @Output() close = new EventEmitter<void>();
 
