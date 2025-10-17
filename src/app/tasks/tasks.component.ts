@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
+import { NewTaskComponent } from './new-task/new-task.component';
+import { NewTaskData, Task } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [TaskComponent, NgFor],
+  imports: [TaskComponent, NgFor, NewTaskComponent, NgIf],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -13,6 +15,7 @@ export class TasksComponent {
   @Input({ required: true }) userId!: string;
   @Input({ required: true }) userName!: string;
 
+  isAddingTask: boolean = false;
   tasks = [
     {
       id: '1',
@@ -96,5 +99,26 @@ export class TasksComponent {
 
   onCompleteTask(taskId: string) {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
+  }
+
+  onAddNewTask() {
+    this.isAddingTask = true;
+  }
+
+  onCancelAddTask() {
+    this.isAddingTask = false;
+  }
+
+  onCreateNewTask(taskData: NewTaskData) {
+    this.tasks.push({
+      id: new Date().getTime().toString(),
+      title: taskData.title,
+      summary: taskData.summary,
+      dueDate: taskData.dueDate,
+      userId: this.userId,
+    });
+
+    this.isAddingTask = false;
+
   }
 }
