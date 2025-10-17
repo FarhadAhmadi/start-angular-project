@@ -1,23 +1,14 @@
 <section id="tasks">
   <header>
-    <h2>{{ name }}'s Tasks</h2>
+    <h2>{{ userName }}'s Tasks</h2>
     <menu>
       <button>Add Task</button>
     </menu>
   </header>
 
   <ul>
-    <li>
-      <app-task> </app-task>
-    </li>
-    <li>
-      <app-task> </app-task>
-    </li>
-    <li>
-      <app-task> </app-task>
-    </li>
-    <li>
-      <app-task> </app-task>
+    <li *ngFor="let task of userTasks; trackBy: trackTask">
+      <app-task [task]="task"></app-task>
     </li>
   </ul>
 </section>
