@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Task } from './task.model';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { type Task } from './task.model';
 
 @Component({
   selector: 'app-task',
@@ -10,4 +10,9 @@ import { Task } from './task.model';
 })
 export class TaskComponent {
   @Input({ required: true }) task!: Task;
+  @Output() complete = new EventEmitter<string>();
+
+  onTaskComplete(taskId : string): void {
+    this.complete.emit(taskId);
+  }
 }

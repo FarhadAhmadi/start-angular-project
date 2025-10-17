@@ -93,4 +93,8 @@ export class TasksComponent {
   trackTask(index: number, task: { id: string }): string {
     return task.id;
   }
+
+  onCompleteTask(taskId: string) {
+    this.tasks = this.tasks.filter((task) => task.id !== taskId);
+  }
 }
