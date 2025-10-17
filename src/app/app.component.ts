@@ -29,7 +29,6 @@ export class AppComponent {
 
   changeUserName(): void {
     console.log('Before change:', this.users);
-    // فقط اسم اولین کاربر رو تغییر می‌دیم
     this.users[0] = { ...this.users[0], name: 'Changed Name' };
     console.log('After change:', this.users);
   }
