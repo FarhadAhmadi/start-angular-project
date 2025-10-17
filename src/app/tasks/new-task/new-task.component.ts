@@ -46,4 +46,10 @@ export class NewTaskComponent {
 
     this.close.emit();
   }
+
+  private clearForm(): void {
+    this.enteredTitle = '';
+    this.enteredSummary = '';
+    this.enteredDueDate = '';
+  }
 }
